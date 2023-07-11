@@ -1,0 +1,34 @@
+{
+  "requestId": "abcd123456789",
+  "result": [
+    {
+      "dataType": "string",
+      "displayName": "Company Name",
+      "id": 4,
+      "length": 255,
+      "rest": {
+        "name": "company",
+        "readOnly": false
+      },
+      "soap": {
+        "name": "Company",
+        "readOnly": false
+      }
+    },
+    {
+      "dataType": "string",
+      "displayName": "Site",
+      "id": 5,
+      "length": 255,
+      "rest": {
+        "name": "site",
+        "readOnly": false
+      },
+      "soap": {
+        "name": "Site",
+        "readOnly": false
+      }
+    }
+  ],
+  "success": true
+}

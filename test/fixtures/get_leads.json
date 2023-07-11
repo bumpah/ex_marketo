@@ -1,0 +1,12 @@
+{
+  "requestId": "abcd123456789",
+  "result": [
+    {
+      "id": 1234567,
+      "email": "user@company.com",
+      "unsubscribed": true,
+      "user_id": "1234"
+    }
+  ],
+  "success": true
+}

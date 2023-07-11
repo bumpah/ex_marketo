@@ -1,0 +1,6 @@
+{
+  "access_token": "abc12345-1234-abcd-1234-abcd12345678:ad",
+  "expires_in": 3537,
+  "scope": "api-user@company.com",
+  "token_type": "bearer"
+}
