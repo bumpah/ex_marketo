@@ -1,6 +1,6 @@
 # ExMarketo
 
-[![codecov](https://codecov.io/gh/bumpah/ex_marketo/branch/main/graph/badge.svg?token=JDHE8SNYID)](https://codecov.io/gh/bumpah/ex_marketo)
+[![Hex](https://img.shields.io/hexpm/v/ex_marketo)](https://hex.pm/packages/ex_marketo) [![codecov](https://codecov.io/gh/bumpah/ex_marketo/branch/main/graph/badge.svg?token=JDHE8SNYID)](https://codecov.io/gh/bumpah/ex_marketo)
 
 ExMarketo is an library to authenticate and communicate with Marketo API.
 
