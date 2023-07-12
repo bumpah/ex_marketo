@@ -30,4 +30,6 @@ config :ex_marketo,
   identity: "https://123-ABC-456.mktorest.com/identity",
   client_id: "client_id",
   client_secret: "client_secret"
+  # optional
+  :api, ExMarketo.MockApi
 ```

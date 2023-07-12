@@ -12,4 +12,6 @@ config :ex_marketo,
   rate_limit: {100, 20},
   concurrency_limit: 10
 
+# api: ExMarketo.MockApi
+
 import_config "#{Mix.env()}.exs"

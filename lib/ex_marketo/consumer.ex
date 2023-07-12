@@ -2,8 +2,6 @@ defmodule ExMarketo.Consumer do
   @moduledoc false
   use GenStage
 
-  alias ExMarketo.Api
-
   def start_link(_args) do
     initial_state = []
     GenStage.start_link(__MODULE__, initial_state)
@@ -24,10 +22,16 @@ defmodule ExMarketo.Consumer do
   end
 
   def handle_event({:unsubscribe, payload}) do
-    Api.update_lead_unsubscribed_status(payload.email, true)
+    client = api_client()
+    client.update_lead_unsubscribed_status(payload.email, true)
   end
 
   def handle_event({:subscribe, payload}) do
-    Api.update_lead_unsubscribed_status(payload.email, false)
+    client = api_client()
+    client.update_lead_unsubscribed_status(payload.email, false)
+  end
+
+  defp api_client do
+    Application.get_env(:ex_marketo, :api, ExMarketo.Api)
   end
 end
