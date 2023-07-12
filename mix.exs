@@ -17,7 +17,7 @@ defmodule ExMarketo.MixProject do
         "coveralls.detail": :test,
         "coveralls.post": :test,
         "coveralls.html": :test,
-        "coveralls.github": :test
+        "coveralls.json": :test
       ],
       dialyzer: [
         list_unused_filters: true,
@@ -49,7 +49,7 @@ defmodule ExMarketo.MixProject do
       {:dialyxir, "~> 1.3.0", only: [:dev], runtime: false},
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
       {:ex_machina, "~> 2.4", only: :test},
-      {:excoveralls, "~> 0.10", only: :test},
+      {:excoveralls, "~> 0.13", only: :test},
       {:gen_stage, "~> 1.2.1"},
       {:tesla, "~> 1.7.0"}
     ]

@@ -1,4 +1,7 @@
 defmodule ExMarketo.Api do
+  @moduledoc """
+  Internal API used by public layer.
+  """
   alias ExMarketo.IdentityClient
   alias ExMarketo.RestClient
 
