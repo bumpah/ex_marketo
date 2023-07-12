@@ -26,6 +26,7 @@ defmodule ExMarketo.MixProject do
         ignore_warnings: "dialyzer_ignore.exs"
       ],
       name: "ex marketo",
+      source_url: "https://github.com/bumpah/ex_marketo",
       description: description(),
       package: package()
     ]
