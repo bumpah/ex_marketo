@@ -63,5 +63,5 @@ defmodule ExMarketo.Api do
     RestClient.update_leads(body, opts)
   end
 
-  defp fields, do: "email,unsubscribed,unsubscribedReason,user_id_reccoo"
+  defp fields, do: "email,unsubscribed,unsubscribedReason"
 end
