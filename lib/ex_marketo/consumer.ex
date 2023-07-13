@@ -31,6 +31,11 @@ defmodule ExMarketo.Consumer do
     client.update_lead_unsubscribed_status(payload.email, false)
   end
 
+  def handle_event({:get_lead, payload}) do
+    client = api_client()
+    client.query_leads_by_email(payload.email)
+  end
+
   defp api_client do
     Application.get_env(:ex_marketo, :api, ExMarketo.Api)
   end

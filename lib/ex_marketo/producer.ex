@@ -17,10 +17,10 @@ defmodule ExMarketo.Producer do
   end
 
   def request(event) do
-    GenStage.call(__MODULE__, {:notify, event})
+    GenStage.call(__MODULE__, {:request, event})
   end
 
-  def handle_call({:notify, event}, from, state) do
+  def handle_call({:request, event}, from, state) do
     {:noreply, [{event, from}], state}
   end
 end
