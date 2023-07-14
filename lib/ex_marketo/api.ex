@@ -1,67 +1,25 @@
 defmodule ExMarketo.Api do
   @moduledoc """
-  Internal API used by public layer.
+  Defines a behaviour for REST API calls.
   """
-  alias ExMarketo.IdentityClient
-  alias ExMarketo.RestClient
+  @callback authenticate :: Tesla.Env.result()
 
-  def authenticate do
-    IdentityClient.get_oauth_token()
-  end
+  @callback describe_leads(access_token :: String.t()) :: Tesla.Env.result()
 
-  def describe_leads do
-    {:ok, %Tesla.Env{body: body}} = authenticate()
-    access_token = Map.fetch!(body, "access_token")
-    RestClient.describe_leads(access_token: access_token)
-  end
+  @callback query_leads_by_email(email :: String.t(), access_token :: String.t()) ::
+              Tesla.Env.result()
 
-  def query_leads_by_email(email) do
-    {:ok, %Tesla.Env{body: body}} = authenticate()
-    access_token = Map.fetch!(body, "access_token")
+  @callback query_leads_by_field(
+              field_type :: String.t(),
+              filter_value :: String.t() | integer(),
+              access_token :: String.t()
+            ) ::
+              Tesla.Env.result()
 
-    opts = [
-      access_token: access_token,
-      filterType: "email",
-      filterValues: email,
-      fields: fields()
-    ]
-
-    RestClient.query_leads(opts)
-  end
-
-  def query_leads_by_field(filter_type, filter_value) do
-    {:ok, %Tesla.Env{body: body}} = authenticate()
-    access_token = Map.fetch!(body, "access_token")
-
-    opts = [
-      access_token: access_token,
-      filterType: filter_type,
-      filterValues: filter_value,
-      fields: fields()
-    ]
-
-    RestClient.query_leads(opts)
-  end
-
-  def update_lead_unsubscribed_status(email, unsubscribed) do
-    {:ok, %Tesla.Env{body: body}} = authenticate()
-    access_token = Map.fetch!(body, "access_token")
-
-    opts = [access_token: access_token]
-
-    body = %{
-      action: "updateOnly",
-      lookupField: "email",
-      input: [
-        %{
-          email: email,
-          unsubscribed: unsubscribed
-        }
-      ]
-    }
-
-    RestClient.update_leads(body, opts)
-  end
-
-  defp fields, do: "email,unsubscribed,unsubscribedReason"
+  @callback update_lead_unsubscribed_status(
+              email :: String.t(),
+              unsubscribed :: boolean(),
+              access_token :: String.t()
+            ) ::
+              Tesla.Env.result()
 end

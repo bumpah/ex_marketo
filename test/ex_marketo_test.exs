@@ -12,19 +12,6 @@ defmodule ExMarketoTest do
   @describe_leads_response read_fixture("describe_leads.json")
 
   describe "ExMarketo" do
-    setup do
-      mock_global(fn
-        %{method: :get, url: "https://test-marketo.com/oauth/token"} ->
-          {200, %{}, @oauth_response}
-
-        %{method: :post, url: "https://test-marketo.com/v1/leads.json"} ->
-          {200, %{}, @post_leads_response}
-
-        %{method: :get, url: "https://test-marketo.com/v1/leads.json"} ->
-          {200, %{}, @get_leads_response}
-      end)
-    end
-
     test "unsubscribe/1" do
       {:ok, _} = GenStage.start_link(ExMarketo.Producer, [])
       {:ok, _} = GenStage.start_link(ExMarketo.Consumer, [])
@@ -63,22 +50,6 @@ defmodule ExMarketoTest do
   end
 
   describe "ExMarketo.Api" do
-    setup do
-      mock_global(fn
-        %{method: :get, url: "https://test-marketo.com/oauth/token"} ->
-          {200, %{}, @oauth_response}
-
-        %{method: :post, url: "https://test-marketo.com/v1/leads.json"} ->
-          {200, %{}, @post_leads_response}
-
-        %{method: :get, url: "https://test-marketo.com/v1/leads.json"} ->
-          {200, %{}, @get_leads_response}
-
-        %{method: :get, url: "https://test-marketo.com/v1/leads/describe.json"} ->
-          {200, %{}, @describe_leads_response}
-      end)
-    end
-
     test "describe_leads/0" do
       assert {:ok, %Tesla.Env{body: @describe_leads_response}} =
                Api.describe_leads()
