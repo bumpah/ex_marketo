@@ -37,6 +37,6 @@ defmodule ExMarketo.Consumer do
   end
 
   defp api_client do
-    Application.get_env(:ex_marketo, :api, ExMarketo.Api)
+    Application.fetch_env!(:ex_marketo, :api)
   end
 end

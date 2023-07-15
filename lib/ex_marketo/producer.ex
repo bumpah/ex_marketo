@@ -35,6 +35,11 @@ defmodule ExMarketo.Producer do
     {:noreply, [{event, from, access_token}], state}
   end
 
+  def handle_call(:state, from, state) do
+    GenStage.reply(from, state)
+    {:noreply, [], state}
+  end
+
   defp request_api_token do
     client = api_client()
     {:ok, %Tesla.Env{body: body}} = client.authenticate()
@@ -55,6 +60,6 @@ defmodule ExMarketo.Producer do
   end
 
   defp api_client do
-    Application.get_env(:ex_marketo, :api, ExMarketo.Api)
+    Application.fetch_env!(:ex_marketo, :api)
   end
 end
