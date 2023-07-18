@@ -7,4 +7,8 @@ config :ex_marketo,
   identity: "https://test-marketo.com",
   client_id: "client_id",
   client_secret: "client_secret",
-  api: ExMarketo.MockApi
+  api: ExMarketo.MockApi,
+  daily_quota: 50_000,
+  # 100 requests per 20 seconds
+  rate_limit: {100, 20},
+  concurrency_limit: 10

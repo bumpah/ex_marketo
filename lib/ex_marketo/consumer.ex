@@ -1,24 +1,10 @@
 defmodule ExMarketo.Consumer do
   @moduledoc false
-  use GenStage
-
-  def start_link(_args) do
-    initial_state = []
-    GenStage.start_link(__MODULE__, initial_state)
-  end
-
-  def init(initial_state) do
-    sub_opts = [{ExMarketo.Producer, min_demand: 0, max_demand: 10}]
-    {:consumer, initial_state, subscribe_to: sub_opts}
-  end
-
-  def handle_events(events, _from, state) do
-    Enum.each(events, fn {event, from, access_token} ->
+  def start_link({event, from, access_token}) do
+    Task.start_link(fn ->
       response = handle_event(event, access_token)
       GenStage.reply(from, response)
     end)
-
-    {:noreply, [], state}
   end
 
   def handle_event({:unsubscribe, payload}, access_token) do

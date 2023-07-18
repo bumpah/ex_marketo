@@ -4,7 +4,7 @@ defmodule ExMarketo.Application do
   use Application
 
   def start(_type, _args) do
-    children = [ExMarketo.Producer, ExMarketo.Consumer]
+    children = [ExMarketo.Producer, ExMarketo.ConsumerSupervisor]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
