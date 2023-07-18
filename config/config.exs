@@ -10,8 +10,7 @@ config :ex_marketo,
   daily_quota: 50_000,
   # 100 requests per 20 seconds
   rate_limit: {100, 20},
-  concurrency_limit: 10
-
-# api: ExMarketo.MockApi
+  concurrency_limit: 10,
+  api: ExMarketo.Api
 
 import_config "#{Mix.env()}.exs"
