@@ -29,7 +29,20 @@ config :ex_marketo,
   endpoint: "https://123-ABC-456.mktorest.com/rest",
   identity: "https://123-ABC-456.mktorest.com/identity",
   client_id: "client_id",
-  client_secret: "client_secret"
-  # optional
-  :api, ExMarketo.MockApi
+  client_secret: "client_secret",
+  :api, ExMarketo.Api
+```
+
+Update application supervision tree. Start any Tesla adapters before producer and consumer supervisor.
+```elixir
+# application.ex
+def start(_, _) do
+  children = [
+    # Any Tesla-adapter
+    ExMarketo.Producer,
+    ExMarketo.ConsumerSupervisor
+  ]
+  
+  Supervisor.start_link(children, strategy: :one_for_one)
+end
 ```
