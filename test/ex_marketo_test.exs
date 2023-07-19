@@ -3,8 +3,8 @@ defmodule ExMarketoTest do
 
   describe "ExMarketo" do
     test "unsubscribe_by_email/1" do
-      {:ok, _} = GenStage.start_link(ExMarketo.Producer, [])
-      {:ok, _} = ConsumerSupervisor.start_link(ExMarketo.ConsumerSupervisor, [])
+      {:ok, _} = ExMarketo.Producer.start_link([])
+      {:ok, _} = ExMarketo.ConsumerSupervisor.start_link([])
 
       assert {:ok,
               %Tesla.Env{
@@ -15,8 +15,8 @@ defmodule ExMarketoTest do
     end
 
     test "subscribe_by_email/1" do
-      {:ok, _} = GenStage.start_link(ExMarketo.Producer, [])
-      {:ok, _} = ConsumerSupervisor.start_link(ExMarketo.ConsumerSupervisor, [])
+      {:ok, _} = ExMarketo.Producer.start_link([])
+      {:ok, _} = ExMarketo.ConsumerSupervisor.start_link([])
 
       assert {:ok,
               %Tesla.Env{
@@ -27,8 +27,8 @@ defmodule ExMarketoTest do
     end
 
     test "get_subscription_status_by_email/1" do
-      {:ok, _} = GenStage.start_link(ExMarketo.Producer, [])
-      {:ok, _} = ConsumerSupervisor.start_link(ExMarketo.ConsumerSupervisor, [])
+      {:ok, _} = ExMarketo.Producer.start_link([])
+      {:ok, _} = ExMarketo.ConsumerSupervisor.start_link([])
 
       assert {:ok,
               %Tesla.Env{
